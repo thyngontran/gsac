@@ -1,0 +1,162 @@
+
+<!doctype html>
+<html ng-app="CyburiAssistantCoach">
+  <title>{{title}}</title>
+  <head>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/angular-aria.min.js"></script>
+    <script src="lib/angular-messages.min.js"></script>
+    <script src="lib/aws-sdk-2.7.13.min.js"></script>
+    <script src="lib/amazon-cognito-identity.min.js"></script>
+        
+    <!-- Angular Material Library -->
+    <script src="lib/angular-material.min.js"></script>    
+      
+      
+    <script src="main.js"></script>
+      
+    <!-- Angular Material CSS now available via Google CDN; version 1.1.9 used here -->
+    <link rel="stylesheet" href="lib/angular-material.min.css">
+      
+    <link rel="stylesheet" href="main.css">
+         <base href="/" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  </head>
+  <body>
+    
+    <div ng-controller="TourneyListController as tourneyList" class="md-padding"  id="popupContainer" ng-init="tourneyList.init()">
+        
+  <md-toolbar class="md-accent">
+   <div class="md-toolbar-tools">
+      <md-button
+        class="md-icon-button"
+        aria-label="Lets Go" alt="Step 2"
+        ng-click="tourneyList.letsGo()">
+        <md-icon md-svg-icon="img/icons/assignment.svg"></md-icon>
+      </md-button>
+      <h2>{{title}} - New App Starts Here </h2>
+      <span flex></span>
+<!--    <md-button
+        class="md-icon-button"
+        aria-label="Settings"
+        ng-click="tourneyList.showRecordScore()">
+        <md-icon md-svg-icon="img/icons/volleyball1.svg"></md-icon>
+      </md-button>
+-->
+      <sub><small>User:{{tourneyList.userName}}</small></sub>
+      <md-button
+        class="md-icon-button"
+        aria-label="Record Score"
+        ng-click="tourneyList.showDialog('panel.tmpl.html')">
+        <md-icon md-svg-icon="img/icons/volleyball1.svg"></md-icon>
+      </md-button>
+      <md-button
+        class="md-icon-button"
+        aria-label="More"
+        ng-click="tourneyList.showToolbarMenu($event, tourneyList.more)">
+        <md-icon md-svg-icon="img/icons/settingApplication.svg"></md-icon>
+      </md-button>
+       
+    </div>
+  </md-toolbar>
+<div ng-if="tourneyList.helpMessage">        
+The intent is to create a simple and free tool for organizing (2vs2 or 3vs3) the linear game/league/tournament.  Follow these three simple admin steps:
+    <ul>Step 1) Check in players; </ul>
+    <ul>Step 2) <img src="img/icons/assignment.svg" alt="Step 2" height="24" width="24">Auto randomize players and assign to team by net; </ul>
+    <ul>Step 3) <img src="img/icons/volleyball1.svg" alt="Step 3" height="24" width="24">Track score by team and point differential.  </ul>
+For demo purpose, pre-populated players below are fictional names.  Feel free to add new players and fiddle around but data won't be saved til your have an account.  **Register and login to get your own workspace that includes full features of ranking display.  
+<br>  
+</div>    
+Help Message <input type="checkbox" ng-model="tourneyList.helpMessage" ng-init="tourneyList.helpMessage = false"><br>
+<hr>        
+Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyList.names.length}} players checked in.</span>
+      <div ng-if="tourneyList.isLoggedIn">
+      [ <a href="" ng-click="tourneyList.archive()">save/publish</a> ] 
+      </div>
+     {{tourneyList.saveStatusText}}<br>
+        
+      <table>
+        <tr>Search: <input ng-model="tourneyList.searchKeyword"/></tr>
+        <tr><th><md-checkbox aria-label="Select All" ng-model="tourneyList.selectAllFlag" ng-click="tourneyList.selectAll()"/></th>
+            <th>Player Name</th><th>Pool</th><th>Team</th><th>Net</th><th>GP</th><th>GW</th><th>GL</th><th>Points</th></tr>  
+        <tr ng-repeat="player in tourneyList.names | filter: tourneyList.searchKeyword |  orderBy:['text','group']">
+            <td align=center><md-checkbox aria-label="{{$index +1}}" ng-model="player.checkin"></md-checkbox></td>
+            <td><span class="checkin-{{player.checkin}}">{{player.text}}</span></td>
+            <td>
+                <select ng-model="player.group">
+                    <option value="Gold">{{tourneyList.pool[0]}}</option>
+                    <option value="Silver">{{tourneyList.pool[1]}}</option>
+                    <option value="New">{{tourneyList.pool[2]}}</option>
+                </select>
+            </td>
+                
+            <td align=center>{{player.team}}</td>
+            <td align=center>{{player.net}}</td>
+            <td align=center>{{player.gamePlayed}}</td>
+            <td align=center>{{player.gameWon}}</td>
+            <td align=center>{{player.gameLost}}</td>
+            <td align=center>{{player.totalPoints}}</td>
+        </tr>
+          
+      </table>
+        <form name="newUserForm">
+      <div layout="row">
+        
+        <md-input-container><label>New Player Name (Required)</label>
+        <input name="playerName" type="text" ng-model="tourneyList.newNameText" size="30"
+               ng-required="true" required>
+             </md-input-container>
+        <md-input-container>
+        <label>Group</label>
+        <md-select name="groupName" ng-model="tourneyList.newPoolText" required>
+            <md-option ng-value="opt" ng-repeat="opt in tourneyList.pool">{{opt}}</md-option>
+        </md-select>
+        </md-input-container>
+        <md-input-container>
+        <md-button class="md-raised md-primary" ng-click="tourneyList.addPlayer()" ng-disabled="newUserForm.$invalid">Add
+          </md-button>
+        </md-input-container>
+     
+        </div>
+        </form>
+    <br>
+    <hr>
+    Randomized team(s):
+    <hr>   
+    <table>
+        {{tourneyList.generatedPool1.length}} player(s) in Gold Pool
+        <tr><th>Team</th><th>Player Name</th><th>Net</th></tr>  
+        <tr ng-repeat="player in tourneyList.generatedPool1 | orderBy:['team','text']">
+            <td>{{player.team}}</td>
+            <td>{{player.text}}</td>
+            <td>{{player.net}}</td>
+        </tr>    
+    </table>
+      
+    <br>
+    <table>
+        {{tourneyList.generatedPool2.length}} player(s) in Silver Pool
+        <tr><th>Team</th><th>Player Name</th><th>Net</th></tr>  
+        <tr ng-repeat="player in tourneyList.generatedPool2 | orderBy:['team','text']">
+            <td>{{player.team}}</td>
+            <td>{{player.text}}</td>
+            <td>{{player.net}}</td>
+        </tr>
+          
+    </table>
+    <br>
+    <table>
+        {{tourneyList.generatedPool3.length}} player(s) in New Pool
+        <tr><th>Team</th><th>Player Name</th><th>Net</th></tr>  
+        <tr ng-repeat="player in tourneyList.generatedPool3 | orderBy:['team','text']">
+            <td>{{player.team}}</td>
+            <td>{{player.text}}</td>
+            <td>{{player.net}}</td>
+        </tr>
+          
+    </table>
+            
+    </div>
+  </body>
+</html>

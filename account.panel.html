@@ -1,0 +1,55 @@
+<div role="dialog" aria-label="Setting" layout="column" layout-align="center center">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Account Info</h2>
+    </div>
+  </md-toolbar>
+
+  <div class="demo-dialog-content" ng-init="tourneyList.initAccount()">
+      
+    User logged in as:{{tourneyList.userName}}  
+    <hr>
+    <br>   
+      
+    <div ng-show="tourneyList.isLoggedIn == false">
+    <form name="signInForm" ng-submit="tourneyList.signIn($event)">
+        <label>User name<input type="text" ng-model="tourneyList.username" size="30"
+               placeholder="user/email" ng-required=true required></label> <br>        
+        <label>Password<input type="password" ng-model="tourneyList.password" size="30"
+               placeholder="Password" required ng-minlength="6"></label> <br>        
+        <center><input class="btn-primary" type="submit" value="Sign In" ng-disabled="signInForm.$invalid"></center>
+    </form>
+    </div>
+      
+    <div ng-show="tourneyList.isLoggedIn">
+        <form ng-submit="tourneyList.signOut($event)">
+            <center><input class="btn-primary" type="submit" value="Sign Out"></center>
+        </form>
+    </div>
+    <br>
+    OR register a new account.
+      <hr>
+    <form name="registerForm" ng-submit="tourneyList.register($event)">
+        <label>User name <input type="text" ng-model="tourneyList.registerusername" size="30"
+                placeholder="Enter new user/email" required></label> <br>        
+        <label>Password <input type="password" ng-model="tourneyList.registerpassword" size="30"
+                placeholder="Enter new password" required ng-minlength="6"></label> <br>        
+        <center><input class="btn-primary" type="submit" value="Register" ng-disabled="registerForm.$invalid"></center>
+    </form>
+      
+    
+
+
+    <div layout="row" >
+      <img flex alt="cyburi vbc" src="img/icons/volleyball1.svg">
+    </div>
+  </div>
+<!--
+  <div layout="row" class="demo-dialog-button">
+    <md-button md-autofocus flex class="md-primary" ng-click="tourneyList.closeDialog()">
+      Close
+    </md-button>
+  </div>
+-->
+
+</div>
