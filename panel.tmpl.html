@@ -1,0 +1,28 @@
+<div role="dialog" aria-label="Recording Scores" layout="column" layout-align="center center">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Step 3) Tracking/Recording Scores</h2>
+    </div>
+  </md-toolbar>
+
+  <div class="demo-dialog-content">
+    
+    Enter numbers only!!!  
+    <br>
+      
+    <form name="scoreForm" ng-submit="tourneyList.recordGame($event)">
+        <input type="text" ng-model="tourneyList.trackTeamWon" size="5"
+               placeholder="# won" required ng-pattern="regexDigit"> 
+        vs
+        <input type="text" ng-model="tourneyList.trackTeamLost" size="5"
+               placeholder="# lost" required ng-pattern="regexDigit"> 
+        <input type="text" ng-model="tourneyList.trackPointDif" size="5"
+               placeholder="dif" required ng-pattern="regexDigit">
+        <input class="btn-primary" type="submit" value="Record" ng-disabled="scoreForm.$invalid">
+    </form>
+    <br>
+    <div layout="row" >
+      <img flex alt="cyburi vbc" src="img/icons/volleyball1.svg">
+    </div>
+  </div>
+</div>

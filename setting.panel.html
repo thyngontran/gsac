@@ -1,0 +1,50 @@
+<div role="dialog" aria-label="Setting" layout="column" layout-align="center center">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Setting</h2>
+    </div>
+  </md-toolbar>
+
+    
+  <div class="demo-dialog-content" ng-init="tourneyList.initSetting()">
+      
+    <br>      
+    <div layout="row">
+    
+    <form name="settingForm" ng-submit="tourneyList.recordSetting($event)">
+        <md-input-container flex="50">
+        <label>Site Location</label><input name="siteId" ng-model="tourneyList.siteId" size="30" required>
+        <div ng-messages="settingForm.siteId.$error">
+            <div ng-message="required">This is required.</div>
+        </div>
+            </md-input-container>
+                <md-input-container>
+        <label>Total Net</label><input name="totalNet" type="number" step="1" ng-model="tourneyList.totalNet" required> 
+            </md-input-container>    
+        
+        <md-input-container>
+        <label>{{tourneyList.pool[0]}} Team Size</label><input name="pool1Size" type="number" step="1" ng-model="tourneyList.pool1TeamSize" required>
+        </md-input-container>
+        <md-input-container>
+        <label>{{tourneyList.pool[1]}} Team Size</label><input name="pool2Size" type="number" step="1" ng-model="tourneyList.pool2TeamSize" required>
+            </md-input-container>
+        <md-input-container>
+        <label>Default Team Size</label> <input name="poolDefaultSize" type="number" step="1" ng-model="tourneyList.teamSize" required> 
+        </md-input-container>
+
+       
+        <br>
+        <center>
+        <md-input-container>
+        <md-button class="md-raised md-primary" ng-click="tourneyList.recordSetting($event)" ng-disabled="settingForm.$invalid">Save
+          </md-button>
+        </md-input-container>
+        </center>
+    </form>
+    </div>
+    <br>
+
+    <div layout="row" >
+      <img flex alt="cyburi vbc" src="img/icons/volleyball1.svg">
+    </div>
+</div>
