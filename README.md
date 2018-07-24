@@ -7,12 +7,12 @@ https://docs.google.com/document/d/1q6eeULI87KpXPdjhqyIoqkUZXrnklPVD4BSmbiEZy7g/
 
 gitrepo=https://github.com/thyngontran/gsac.git
 
-
+<code>
 directory view:
 . root folder
 ./img  all image resources file
 ./lib folder contains all the angularjs, angular material, aws cognito lib 
-
+</code>
 
 The index.hmtl is the starting point that includes main.js and .css and all other js libraries above.  Other *.html are html templates that use in the popup dialog.
 
