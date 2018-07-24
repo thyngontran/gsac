@@ -1,13 +1,29 @@
 (function() {
 'use strict';
 
-var app = angular.module('CyburiAssistantCoach', ['ngMaterial'], function($locationProvider)  {
+var app = angular.module('CyburiAssistantCoach', ['ngMaterial', 'ngRoute'], function($locationProvider)  {
     $locationProvider.html5Mode(true);    
 })
     .controller('PanelMenuCtrl', PanelMenuCtrl)   
     .controller('TourneyListController', TourneyListController)       
     ;
 
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.htm"
+    })
+    .when("/checkin", {
+        templateUrl : "checkin.htm"
+    })
+    .when("/play", {
+        templateUrl : "random.htm"
+    })
+    .when("/result", {
+        templateUrl : "result.htm"
+    });
+});    
+    
 app.run(function($rootScope){
     $rootScope.title = "Team Ruby";
 });
@@ -23,9 +39,10 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
     this.more = {
       name: 'more',
       items: [
-        'Account',
-        'Setting',          
-        'SignOut'
+        'Setting',
+        'Main',          
+        'Result',          
+        'Random'
       ]
     };
     
@@ -179,8 +196,8 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
         '<div class="menu-panel" md-whiteframe="4">' +
         '  <div class="menu-content">' +
             '<div class="menu-item">' +    
-        '      <button class="md-button" ng-click="ctrl.accountAction()">' +
-        '        <span>Account</span>' +
+        '      <button class="md-button" ng-click="go(\'/checkin\')">' +
+        '        <span>Main</span>' +
         '      </button>' +
         '    </div>' +
             '<div class="menu-item">' +    
@@ -189,8 +206,13 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
         '      </button>' +
         '    </div>' +
             '<div class="menu-item">' +    
-        '      <button class="md-button" ng-click="ctrl.showRankAction()">' +
+        '      <button class="md-button" ng-click="go(\'/result\')">' +
         '        <span>Show Rank</span>' +
+        '      </button>' +
+        '    </div>' +
+            '<div class="menu-item">' +    
+        '      <button class="md-button" ng-click="go(\'/random\')">' +
+        '        <span>Random</span>' +
         '      </button>' +
         '    </div>' +
         '    <md-divider></md-divider>' +

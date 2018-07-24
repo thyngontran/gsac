@@ -1,14 +1,18 @@
 #!/bin/bash
 
-webappname=CACSTUnicorn
+webappname=CACSTRuby
 #resource-group is also named as CACSTUnicorn
-myResourceGroup=CACSTRubyTeam
+myResourceGroup=ChallengeTeam2
 # replease with your project repository
-gitrepo=https://github.com/thyngontran/tourney.git
+gitrepo=https://github.com/thyngontran/gsac.git
 
 
-# Create a resource group.
-az group create --location eastus --name $myResourceGroup
+az cloud set --name AzureUSGovernment
+
+az login
+
+# Create a resource group.  RESOURCE ALREADY CREATED in the competition
+# az group create --location eastus --name $myResourceGroup
 
 # Create an App Service plan in STANDARD tier (minimum required by deployment slots).
 az appservice plan create --name $webappname --resource-group $myResourceGroup --sku S1
@@ -16,7 +20,7 @@ az appservice plan create --name $webappname --resource-group $myResourceGroup -
 # Create a web app.
 az webapp create --name $webappname --resource-group $myResourceGroup --plan $webappname
 # goto link below and verified webapp shell created successfully
-echo http://$webappname.azurewebsites.net
+echo https://$webappname.azurewebsites.us
 
 #Create a deployment slot with the name "staging".
 az webapp deployment slot create --name $webappname --resource-group $myResourceGroup --slot staging
@@ -29,7 +33,7 @@ az webapp deployment source config --name $webappname --resource-group $myResour
 az webapp deployment source sync --name $webappname --resource-group $myResourceGroup --slot staging
 
 # Copy the result of the following command into a browser to see the staging slot.
-echo http://$webappname-staging.azurewebsites.net
+echo https://$webappname-staging.azurewebsites.us
 
 # Swap the verified/warmed up staging slot into production.
 az webapp deployment slot swap --name $webappname --resource-group $myResourceGroup --slot staging
