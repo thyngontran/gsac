@@ -1,1 +1,27 @@
-     First Responder goes here.
+        
+Employees by IN
+        <table>
+        <tr><th></th>
+            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th><th>Status</th></tr>  
+        <tr ng-repeat="player in tourneyList.employees | filter: 'IN' |  orderBy:['lname','fname']">
+            <td align=center> 
+        <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
+            </td>
+            <td align=center>{{player.fname}}</td>
+            <td align=center>{{player.lname}}</td>
+            <td align=center>{{player.email}}</td>
+            <td align=center>{{player.building}}</td>
+            <td align=center>{{player.floor}}</td>
+            <td align=center>{{player.room}}</td>
+            <td align=center>{{player.phone}}</td>
+            <td>
+                <select ng-model="player.status">
+                    <option value="IN">{{tourneyList.status[0]}}</option>
+                    <option value="OUT">{{tourneyList.status[1]}}</option>
+                    <option value="SAFE">{{tourneyList.status[2]}}</option>
+                </select>
+            </td>
+                
+        </tr>
+          
+      </table>

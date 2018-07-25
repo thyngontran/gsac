@@ -31,7 +31,7 @@ app.run(function($rootScope){
         
     ];
     
-    $rootScope.eventType = '2';
+    $rootScope.eventType = '1';
     $rootScope.eventStartTime = new Date();
     
 });

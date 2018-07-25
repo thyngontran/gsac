@@ -11,7 +11,7 @@
 			</div>
 		</div>
 
-
+<br><br><br>
 
 <div ng-if="eventType==0">        
 No emergency event today 
@@ -21,7 +21,7 @@ No emergency event today
 </div>    
 <div ng-if="eventType==1">        
 Fire Evacuation Started
-    {{eventType}}
+    {{eventType}}   <md-button ng-click="tourneyList.completeEvent('{{eventId}}')">Close Event</md-button>
 <br>
 Message sent out to all employees who is in the building.
 "Take stairs down and rally at Freedom Park"
