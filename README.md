@@ -16,7 +16,7 @@ directory view:
 </code>
 </pre>
 
-This project would run on any web server (IIS, tomcat, J2EE, or any static webservers).  The index.hmtl is the starting point that includes main.js and .css and all other js libraries above.  Other *.html are html templates that use in the popup dialog.
+This project would run on any web server (IIS, tomcat, J2EE, or any static webservers).  The index.html is the starting point that includes main.js and .css and all other js libraries above.  Other *.html are html templates that use in the popup dialog.
 
 Even JavaScript does not require compiling, we should have a build file (TODO) that include karma unit test, and end-to-end testings (e2e).   (TODO) 
 
