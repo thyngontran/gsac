@@ -57,6 +57,16 @@
       </md-button>
 -->
        
+      <sub><small>User:{{tourneyList.userName}}</small></sub>
+       
+      <md-button
+        class="md-icon-button"
+        aria-label="Account"
+        ng-click="tourneyList.showDialog('account.panel.html')">
+        <md-icon md-svg-icon="img/icons/account.svg"></md-icon>
+      </md-button>
+       
+       
       <md-button
         class="md-icon-button"
         aria-label="Fire"
@@ -64,15 +74,6 @@
         <md-icon md-svg-icon="img/icons/settingApplication.svg"></md-icon>
       </md-button>
        
-       
-       
-      <sub><small>User:{{tourneyList.userName}}</small></sub>
-      <md-button
-        class="md-icon-button"
-        aria-label="Account"
-        ng-click="tourneyList.fire('account.panel.html')">
-        <md-icon md-svg-icon="img/icons/account.svg"></md-icon>
-      </md-button>
        
     </div>
   </md-toolbar>        

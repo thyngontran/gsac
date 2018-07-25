@@ -1,4 +1,4 @@
-		<div class="mx-auto" style="width: 200px;">
+		<div class="mx-auto" style="width: 200px;" ng-init"">
 			<div class="btn-group">
 				<button type="button" class="btn btn-danger btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Start Event
@@ -6,7 +6,40 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="/#!checkin?event_type_id=1"><i class="fas fa-fire"></i> Fire</a>
 					<a class="dropdown-item" href="/#!checkin?event_type_id=2"><i class="fas fa-gas-pump"></i> Gas Leak</a>
-					<a class="dropdown-item" href="event_management.htm?event_type_id=3"><i class="fas fa-user-ninja"></i> Shooter</a>
+					<a class="dropdown-item" href="/#!?event_type_id=3"><i class="fas fa-user-ninja"></i> Shooter</a>
 				</div>
 			</div>
 		</div>
+
+
+
+<div ng-if="eventType==0">        
+No emergency event today 
+    {{eventStartTime}}
+    
+<br>  
+</div>    
+<div ng-if="eventType==1">        
+Fire Evacuation Started
+    {{eventType}}
+<br>
+Message sent out to all employees who is in the building.
+"Take stairs down and rally at Freedom Park"
+    
+<br>  
+</div>    
+<div ng-if="eventType==2">        
+Gas Leak Evactuation started {{eventStartTime}}
+<br>
+Message sent out to all employees who is in the building.
+"Take stairs down and rally at Freedom Park"    
+<br>  
+</div>    
+<div ng-if="eventType==3">        
+Gas Leak Evactuation started
+    {{eventType}}
+<br>
+Message sent out to all employees who is in the building.
+"Goto designated lockdown room"    
+<br>  
+</div>    

@@ -26,6 +26,9 @@ app.config(function($routeProvider) {
     
 app.run(function($rootScope){
     $rootScope.title = "Floor Warden";
+    $rootScope.eventType = '2';
+    $rootScope.eventStartTime = new Date();
+    
 });
     
 function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
@@ -151,6 +154,18 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
             this.retrieveAllPlayers (createdByStr);
         }        
     }
+
+    
+    playerList.editPlayer = function(emailStr) {
+        
+        console.log("EDIT Player:"+emailStr);  
+        angular.forEach(playerList.employees, function(player) {
+                      console.log("Success Save:"+JSON.stringify(player));
+        });
+    
+        $rootScope.playerList.showDialog('panel.tmpl.html');
+    };
+    
     
     playerList.addPlayer = function() {
         playerList.saveStatusText = "";
