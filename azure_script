@@ -40,5 +40,7 @@ az webapp deployment slot swap --name $webappname --resource-group $myResourceGr
 echo http://$webappname.azurewebsites.net
 
 
+az resource update --name web --resource-group myResourceGroup --namespace Microsoft.Web --resource-type config --parent sites/floorwardenbackend --set properties.cors.allowedOrigins="['*']" --api-version 2015-06-01
+
 #cleanup 
 az group delete --name $myResourceGroup

@@ -20,6 +20,10 @@
         <input name="building" type="text" ng-model="tourneyList.newBuildingText" size="30"
                ng-required="true" required>
              </md-input-container>
+        <md-input-container><label>Floor</label>
+        <input name="floor" type="text" ng-model="tourneyList.newFloorText" size="30"
+               ng-required="true" required>
+            </md-input-container>
         <md-input-container><label>Room (Required)</label>
         <input name="room" type="text" ng-model="tourneyList.newRoomText" size="30"
                ng-required="true" required>
@@ -31,12 +35,6 @@
        </md-input-container>
             
         <md-input-container>
-        <label>Status</label>
-        <md-select name="stattus" ng-model="tourneyList.newStatusText" required>
-            <md-option ng-value="opt" ng-repeat="opt in tourneyList.status">{{opt}}</md-option>
-        </md-select>
-        </md-input-container>
-        <md-input-container>
         <md-button class="md-raised md-primary" ng-click="tourneyList.addPlayer()" ng-disabled="newUserForm.$invalid">Add
           </md-button>
         </md-input-container>
@@ -46,7 +44,7 @@
 
 
 Site: {{tourneyList.siteId}} -- <span>Total {{tourneyList.employees.length}} employees in your roster.</span>
-      <div ng-if="tourneyList.isLoggedIn">
+      <div ng-init="tourneyList.init()">
       [ <a href="" ng-click="tourneyList.archive()">save/publish</a> ] 
       </div>
      {{tourneyList.saveStatusText}}<br>
@@ -59,13 +57,13 @@ Site: {{tourneyList.siteId}} -- <span>Total {{tourneyList.employees.length}} emp
             <td align=center> 
         <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
             </td>
-            <td align=center>{{player.fname}}</td>
-            <td align=center>{{player.lname}}</td>
-            <td align=center>{{player.email}}</td>
-            <td align=center>{{player.building}}</td>
-            <td align=center>{{player.floor}}</td>
-            <td align=center>{{player.room}}</td>
-            <td align=center>{{player.phone}}</td>
+            <td>{{player.fname}}</td>
+            <td>{{player.lname}}</td>
+            <td>{{player.email}}</td>
+            <td>{{player.building}}</td>
+            <td>{{player.floor}}</td>
+            <td>{{player.room}}</td>
+            <td>{{player.phone}}</td>
                 
         </tr>
           

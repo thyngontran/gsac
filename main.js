@@ -26,6 +26,11 @@ app.config(function($routeProvider) {
     
 app.run(function($rootScope){
     $rootScope.title = "Floor Warden";
+    $rootScope.events = [
+      {name:'Fire', startTime:'2018-07-25T17:13:35.873Z', endTime:'', eventType:'1'}
+        
+    ];
+    
     $rootScope.eventType = '2';
     $rootScope.eventStartTime = new Date();
     
@@ -59,56 +64,43 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
     var poolData = {UserPoolId: 'us-east-2_yIstCoKlH',ClientId: '66a84rgkfsbsc4pv8ifcvohgpk'};
         
 
-    var apiurl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/retrieveplayers";
+    //var apiurl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/retrieveplayers";
+    var apiurl = "https://floorwardenbackend.azurewebsites.us/api/Employees";
     
     playerList.employees = [
       {fname:'Bruce', lname:'Wayne', email:'GSAC.BW@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
       {fname:'Clark', lname:'Kent', email:'GSAC.CK@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
       {fname:'Bruce', lname:'Banner', email:'GSAC.BB@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
-      {fname:'Donna', lname:'Troy', email:'GSAC.DT@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
-      {fname:'Selina', lname:'Kyle', email:'GSAC.SK@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'OUT'},
+      //{fname:'Donna', lname:'Troy', email:'GSAC.DT@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
+      //{fname:'Selina', lname:'Kyle', email:'GSAC.SK@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'OUT'},
       {fname:'Barbara', lname:'Gordon', email:'GSAC.BG@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'}
     ];
     
-    
- /*
-    // empty parameters
-    var headers = {
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json; charset=utf-8',
-        'Mine-Type': 'application/json; charset=utf-8'
-    };
-    */
     
     playerList.retrieveAllPlayers = function(userStr) {
     
         //var apiurl = "input.txt";
         var request={
-            "locationId": "cyburi",
-            "createdBy": userStr
+            //"locationId": "cyburi",
+            //"createdBy": userStr
         };
         
         
         
         //$http.get(apiurl,request,{headers})
-        $http.post(apiurl,request)
+        $http.get(apiurl)
             .then(function Success(response){
             
-            //$rootScope.playerList.names = response.data.players;
-            while($rootScope.playerList.names.length > 0) {
-                $rootScope.playerList.names.pop();
+            //$rootScope.playerList.employees = response.data;
+            while($rootScope.playerList.employees.length > 0) {
+                $rootScope.playerList.employees.pop();
             }
-            angular.forEach(response.data.players, function(player) {
-                $rootScope.playerList.names.push(player);
+            angular.forEach(response.data, function(player) {
+                $rootScope.playerList.employees.push(player);
             });
             
-            $rootScope.playerList.generatedPool1 = [];
-            $rootScope.playerList.generatedPool2 = [];
-            $rootScope.playerList.generatedPool3 = [];
             
-            console.log("Response TTT:" + $rootScope.playerList.names);
+            console.log("Response TTT:" + $rootScope.playerList.employees);
           }, function Error(response){ //handler errors here
             console.log("tttttt"+response.statusText);
           });
@@ -382,7 +374,21 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
             playerList.retrieveAllPlayers(playerList.userName);
         }
     }
-    
+    //TODO
+    playerList.initChecking = function() {
+        var params = $location.search();
+        if(params != null){
+           isAdmin = params.admin;
+        
+        var createdByStr = params.createdby;
+        
+        if(createdByStr != null){    
+            $rootScope.playerList = playerList;
+            this.retrieveAllPlayers (createdByStr);
+        }        
+    }
+        
+    }
     
     playerList.initAccount = function() {
         
@@ -499,23 +505,16 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
     playerList.archive = function() {
         playerList.saveStatusText = "";
       
-            var addPlayerUrl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/addplayer";
+            //var addPlayerUrl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/addplayer";
+        
+            var addPlayerUrl = "https://floorwardenbackend.azurewebsites.us/api/Employees/Add";
         
               var oldNames = playerList.employees;
               var count = 0;
               angular.forEach(oldNames, function(player) {
                   
-                  //handle undefine nubmer;
-                  if (player.gamePlayed == null || player.gamePlayed == '') player.gamePlayed=0;
-                  if (player.gameWon == null || player.gameWon == '') player.gameWon=0;
-                  if (player.gameLost == null|| player.gameLost == '') player.gameLost=0;
-                  if (player.totalPoints == null|| player.totalPoints == '') player.totalPoints=0;
-                  if (player.locationId == null || player.locationId == '') player.locationId= playerList.siteId;
-          
-                  
-                  player.createdBy = playerList.userName;
+                  //player.createdBy = playerList.userName;
                    
-                  
                   //save to server 
                   $http.post(addPlayerUrl,player).
                   then(function(response){

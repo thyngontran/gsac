@@ -1,15 +1,6 @@
 <div role="dialog" aria-label="Recording Scores" layout="column" layout-align="center center">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>Step 3) Tracking/Recording Scores</h2>
-    </div>
-  </md-toolbar>
-
   <div class="demo-dialog-content">
     
-    Enter numbers only!!!  
-    <br>
-      
     <form name="newUserForm">
       <div>
         <md-input-container><label>First Name (Required)</label>
@@ -27,25 +18,19 @@
                ng-required="true" required>
              </md-input-container>
         <md-input-container><label>Building (Required)</label>
-        <input name="building" type="text" ng-model="tourneyList.newBuildingText" size="30"
+        <input name="building" type="text" ng-model="tourneyList.newBuildingText" size="10"
                ng-required="true" required>
              </md-input-container>
         <md-input-container><label>Room (Required)</label>
-        <input name="room" type="text" ng-model="tourneyList.newRoomText" size="30"
+        <input name="room" type="text" ng-model="tourneyList.newRoomText" size="10"
                ng-required="true" required>
             </md-input-container>
         
         <md-input-container><label>Phone (Required)</label>
-        <input name="phone" type="text" ng-model="tourneyList.newPhoneText" size="30"
+        <input name="phone" type="text" ng-model="tourneyList.newPhoneText" size="10"
                ng-required="true" required>
        </md-input-container>
             
-        <md-input-container>
-        <label>Status</label>
-        <md-select name="stattus" ng-model="tourneyList.newStatusText" required>
-            <md-option ng-value="opt" ng-repeat="opt in tourneyList.status">{{opt}}</md-option>
-        </md-select>
-        </md-input-container>
         <md-input-container>
         <md-button class="md-raised md-primary" ng-click="tourneyList.addPlayer()" ng-disabled="newUserForm.$invalid">Add
           </md-button>
@@ -54,8 +39,5 @@
     </form>
 
     <br>
-    <div layout="row" >
-      <img flex alt="cyburi vbc" src="img/icons/volleyball1.svg">
-    </div>
   </div>
 </div>

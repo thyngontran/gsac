@@ -2,10 +2,7 @@
 
 
 Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyList.employees.length}} employees checked in.</span>
-      <div ng-if="tourneyList.isLoggedIn">
-      [ <a href="" ng-click="tourneyList.archive()">save/publish</a> ] 
-      </div>
-     {{tourneyList.saveStatusText}}<br>
+      <div ng-init="tourneyList.init()">
         
       <table>
         <tr>Search: <input ng-model="tourneyList.searchKeyword"/></tr>
@@ -33,5 +30,6 @@ Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyLi
         </tr>
           
       </table>
+      </div>
     <br>
     <hr>
