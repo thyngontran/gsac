@@ -1,5 +1,5 @@
         
-Employees by IN
+In Office Employees 
         <table>
         <tr><th></th>
             <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th><th>Status</th></tr>  
@@ -25,3 +25,59 @@ Employees by IN
         </tr>
           
       </table>
+
+
+Out of Office Employees 
+        <table>
+        <tr><th></th>
+            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th><th>Status</th></tr>  
+        <tr ng-repeat="player in tourneyList.employees | filter: 'OUT' |  orderBy:['lname','fname']">
+            <td align=center> 
+        <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
+            </td>
+            <td align=center>{{player.fname}}</td>
+            <td align=center>{{player.lname}}</td>
+            <td align=center>{{player.email}}</td>
+            <td align=center>{{player.building}}</td>
+            <td align=center>{{player.floor}}</td>
+            <td align=center>{{player.room}}</td>
+            <td align=center>{{player.phone}}</td>
+            <td>
+                <select ng-model="player.status">
+                    <option value="IN">{{tourneyList.status[0]}}</option>
+                    <option value="OUT">{{tourneyList.status[1]}}</option>
+                    <option value="SAFE">{{tourneyList.status[2]}}</option>
+                </select>
+            </td>
+                
+        </tr>
+          
+      </table>
+
+Employees that reported SAFE 
+        <table>
+        <tr><th></th>
+            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th><th>Status</th></tr>  
+        <tr ng-repeat="player in tourneyList.employees | filter: 'SAFE' |  orderBy:['lname','fname']">
+            <td align=center> 
+        <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
+            </td>
+            <td align=center>{{player.fname}}</td>
+            <td align=center>{{player.lname}}</td>
+            <td align=center>{{player.email}}</td>
+            <td align=center>{{player.building}}</td>
+            <td align=center>{{player.floor}}</td>
+            <td align=center>{{player.room}}</td>
+            <td align=center>{{player.phone}}</td>
+            <td>
+                <select ng-model="player.status">
+                    <option value="IN">{{tourneyList.status[0]}}</option>
+                    <option value="OUT">{{tourneyList.status[1]}}</option>
+                    <option value="SAFE">{{tourneyList.status[2]}}</option>
+                </select>
+            </td>
+                
+        </tr>
+          
+      </table>
+
