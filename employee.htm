@@ -49,24 +49,40 @@ Site: {{tourneyList.siteId}} -- <span>Total {{tourneyList.employees.length}} emp
       </div>
      {{tourneyList.saveStatusText}}<br>
         
-      <table>
-        <tr>Search: <input ng-model="tourneyList.searchKeyword"/></tr>
-        <tr><th></th>
-            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th></tr>  
-        <tr ng-repeat="player in tourneyList.employees | filter: tourneyList.searchKeyword |  orderBy:['lname','fname']">
-            <td align=center> 
-        <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
-            </td>
-            <td>{{player.fname}}</td>
-            <td>{{player.lname}}</td>
-            <td>{{player.email}}</td>
-            <td>{{player.building}}</td>
-            <td>{{player.floor}}</td>
-            <td>{{player.room}}</td>
-            <td>{{player.phone}}</td>
-                
-        </tr>
-          
-      </table>
+	<table id="tbl_employee" class="dataTable table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<th>FName</th>
+				<th>LName</th>
+				<th>Email</th>
+				<th>building</th>
+				<th>Floor</th>
+				<th>Room</th>
+				<th>Phone</th>
+			</tr>
+		</thead>
+		<tbody>  
+			<tr ng-repeat="player in tourneyList.employees | filter: tourneyList.searchKeyword |  orderBy:['lname','fname']">
+				<td align=center> 
+				<md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
+				</td>
+				<td>{{player.fname}}</td>
+				<td>{{player.lname}}</td>
+				<td>{{player.email}}</td>
+				<td>{{player.building}}</td>
+				<td>{{player.floor}}</td>
+				<td>{{player.room}}</td>
+				<td>{{player.phone}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script>
+		$(document).ready(function() {
+			$('#tbl_employee').DataTable();
+		});
+	</script>
+
     <br>
     <hr>
