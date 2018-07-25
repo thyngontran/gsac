@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+   <description>Floor Warden test scripts</description>
+   <name>Floor Warden</name>
+   <tag></tag>
+   <UUID>1018edbe-c1ca-4008-9d74-35d2fedd0f34</UUID>
+   <migratedVersion>5.4.0</migratedVersion>
+   <pageLoadTimeout>0</pageLoadTimeout>
+</Project>
