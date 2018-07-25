@@ -373,6 +373,8 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
             $rootScope.playerList = playerList;
             playerList.retrieveAllPlayers(playerList.userName);
         }
+		
+		$('table.dataTable').DataTable();
     }
     //TODO
     playerList.initChecking = function() {

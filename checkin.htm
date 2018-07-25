@@ -1,6 +1,5 @@
 
 
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
 
 	Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyList.employees.length}} employees checked in.</span>
 	<div ng-init="tourneyList.init()">
@@ -42,12 +41,6 @@
 		</tbody>
 
 	</table>
-
-	<script>
-		$(document).ready(function() {
-			$('table.dataTable').DataTable();
-		});
-	</script>
 </div>
 <br>
 <hr>
