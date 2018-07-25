@@ -45,7 +45,7 @@
 
 
 
-Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyList.employees.length}} players checked in.</span>
+Site: {{tourneyList.siteId}} -- <span>Total {{tourneyList.employees.length}} employees in your roster.</span>
       <div ng-if="tourneyList.isLoggedIn">
       [ <a href="" ng-click="tourneyList.archive()">save/publish</a> ] 
       </div>
@@ -54,7 +54,7 @@ Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyLi
       <table>
         <tr>Search: <input ng-model="tourneyList.searchKeyword"/></tr>
         <tr><th></th>
-            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th><th>Status</th></tr>  
+            <th>FName</th><th>LName</th><th>Email</th><th>building</th><th>Floor</th><th>Room</th><th>Phone</th></tr>  
         <tr ng-repeat="player in tourneyList.employees | filter: tourneyList.searchKeyword |  orderBy:['lname','fname']">
             <td align=center> 
         <md-button ng-click="tourneyList.editPlayer('{{player.email}}')">Edit</md-button>
@@ -66,13 +66,6 @@ Site: {{tourneyList.siteId}} -- <span>{{tourneyList.remaining()}} of {{tourneyLi
             <td align=center>{{player.floor}}</td>
             <td align=center>{{player.room}}</td>
             <td align=center>{{player.phone}}</td>
-            <td>
-                <select ng-model="player.status">
-                    <option value="IN">{{tourneyList.status[0]}}</option>
-                    <option value="OUT">{{tourneyList.status[1]}}</option>
-                    <option value="SAFE">{{tourneyList.status[2]}}</option>
-                </select>
-            </td>
                 
         </tr>
           

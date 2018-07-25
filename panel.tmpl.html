@@ -10,16 +10,49 @@
     Enter numbers only!!!  
     <br>
       
-    <form name="scoreForm" ng-submit="tourneyList.recordGame($event)">
-        <input type="text" ng-model="tourneyList.trackTeamWon" size="5"
-               placeholder="# won" required ng-pattern="regexDigit"> 
-        vs
-        <input type="text" ng-model="tourneyList.trackTeamLost" size="5"
-               placeholder="# lost" required ng-pattern="regexDigit"> 
-        <input type="text" ng-model="tourneyList.trackPointDif" size="5"
-               placeholder="dif" required ng-pattern="regexDigit">
-        <input class="btn-primary" type="submit" value="Record" ng-disabled="scoreForm.$invalid">
+    <form name="newUserForm">
+      <div layout="row">
+        <md-input-container><label>First Name (Required)</label>
+        <input name="fname" type="text" ng-model="tourneyList.newFNameText" size="30"
+               ng-required="true" required>
+        </md-input-container>
+        
+        <md-input-container><label>Last Name (Required)</label>
+        <input name="lname" type="text" ng-model="tourneyList.newLNameText" size="30"
+               ng-required="true" required>
+        </md-input-container><br>
+                   
+        <md-input-container><label>Email (Required)</label>
+        <input name="email" type="text" ng-model="tourneyList.newEmailText" size="30"
+               ng-required="true" required>
+             </md-input-container>
+        <md-input-container><label>Building (Required)</label>
+        <input name="building" type="text" ng-model="tourneyList.newBuildingText" size="30"
+               ng-required="true" required>
+             </md-input-container>
+        <md-input-container><label>Room (Required)</label>
+        <input name="room" type="text" ng-model="tourneyList.newRoomText" size="30"
+               ng-required="true" required>
+            </md-input-container>
+        
+        <md-input-container><label>Phone (Required)</label>
+        <input name="phone" type="text" ng-model="tourneyList.newPhoneText" size="30"
+               ng-required="true" required>
+       </md-input-container>
+            
+        <md-input-container>
+        <label>Status</label>
+        <md-select name="stattus" ng-model="tourneyList.newStatusText" required>
+            <md-option ng-value="opt" ng-repeat="opt in tourneyList.status">{{opt}}</md-option>
+        </md-select>
+        </md-input-container>
+        <md-input-container>
+        <md-button class="md-raised md-primary" ng-click="tourneyList.addPlayer()" ng-disabled="newUserForm.$invalid">Add
+          </md-button>
+        </md-input-container>
+        </div>
     </form>
+
     <br>
     <div layout="row" >
       <img flex alt="cyburi vbc" src="img/icons/volleyball1.svg">
