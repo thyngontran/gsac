@@ -132,7 +132,14 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
     playerList.trackTeamLost = '';
     
     //for adding new playeer
-    playerList.newPoolText = 'New'
+    playerList.newFNameText = '';
+    playerList.newLNameText = '';
+    playerList.newEmailText = '';
+    playerList.newStatusText = '';
+    playerList.newBuildingText = '';
+    playerList.newFloorText = '';
+    playerList.newRoomText = '';
+    playerList.newPhoneText = '';
     
     var params = $location.search();
     if(params != null){
@@ -144,19 +151,18 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
             this.retrieveAllPlayers (createdByStr);
         }        
     }
-    console.log("Admin flag:" + isAdmin);
     
     playerList.addPlayer = function() {
         playerList.saveStatusText = "";
 
-        playerList.names.push({text:playerList.newNameText, checkin:true, group:playerList.newPoolText, team:0, net:0, gameWon:0,gamePlayed:0,gameLost:0,totalPoints:0,PlayerId:""+new Date().getTime(),createdBy:playerList.userName,locationId:playerList.siteId});
+        playerList.employees.push({fname:playerList.newFNameText, lname:playerList.newLNameText, email:playerList.newEmailText, building:playerList.newBuildingText, floor:playerList.newFloorText, room:playerList.newRoomText,phone:playerList.newPhoneText,status:playerList.newStatusText});
         playerList.newNameText = '';
         playerList.newPoolText = '';
     };
  
     playerList.remaining = function() {
       var count = 0;
-      angular.forEach(playerList.names, function(player) {
+      angular.forEach(playerList.employees, function(player) {
         count += (player.checkin) ? 1 : 0;
       });
       return count;
@@ -167,7 +173,7 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
 
         console.log("SelectAll flag:"+playerList.selectAllFlag);
         
-        angular.forEach(playerList.names, function(player) {
+        angular.forEach(playerList.employees, function(player) {
             player.checkin = playerList.selectAllFlag;
         });
     };
@@ -176,7 +182,7 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
 
         playerList.saveStatusText = "";
 
-        angular.forEach(playerList.names, function(player) {
+        angular.forEach(playerList.employees, function(player) {
             player.gameWon=0;
             player.gameLost=0;
             player.gamePlayed=0;
@@ -296,7 +302,7 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
         
         this.saveStatusText = "";
         
-        angular.forEach($rootScope.playerList.names, function(player) {
+        angular.forEach($rootScope.playerList.employees, function(player) {
                 //handle undefine nubmer;
             if (player.gameWon == null) player.gameWon=0;
             if (player.gameLost == null) player.gameLost=0;
@@ -480,7 +486,7 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
       
             var addPlayerUrl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/addplayer";
         
-              var oldNames = playerList.names;
+              var oldNames = playerList.employees;
               var count = 0;
               angular.forEach(oldNames, function(player) {
                   
