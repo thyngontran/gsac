@@ -30,3 +30,7 @@ ALTER TABLE [dbo].[Link_Event_Employee] ADD  CONSTRAINT [DF_Link_Event_Employee_
 GO
 
 
+
+ALTER TABLE [dbo].[Link_Event_Employee] ADD CONSTRAINT active_ind_def   DEFAULT 1 FOR active_ind ;  
+GO  
+

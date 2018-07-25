@@ -28,4 +28,6 @@ GO
 ALTER TABLE [dbo].[Link_Warden_Employee] ADD  CONSTRAINT [DF_Link_Warden_Employee_Date_Created]  DEFAULT (getdate()) FOR [Date_Created]
 GO
 
+ALTER TABLE [dbo].[Link_Warden_Employee] ADD CONSTRAINT active_ind_def   DEFAULT 1 FOR active_ind ;  
+GO  
 

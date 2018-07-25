@@ -27,4 +27,7 @@ CREATE TABLE [dbo].[Employee](
 ) ON [PRIMARY]
 GO
 
-
+ALTER TABLE [dbo].[Employee]
+ADD CONSTRAINT active_ind_def  
+DEFAULT 1 FOR active_ind ;  
+GO  

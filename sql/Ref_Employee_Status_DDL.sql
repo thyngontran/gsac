@@ -26,4 +26,8 @@ GO
 ALTER TABLE [dbo].[Ref_Employee_Status] ADD  CONSTRAINT [DF_Ref_Employee_Status_Active_Ind]  DEFAULT ((1)) FOR [Active_Ind]
 GO
 
+ALTER TABLE [dbo].[Ref_Employee_Status] ADD CONSTRAINT active_ind_def   DEFAULT 1 FOR active_ind ;  
+GO  
+
+
 

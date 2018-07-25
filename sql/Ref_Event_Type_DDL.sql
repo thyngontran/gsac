@@ -22,4 +22,8 @@ CREATE TABLE [dbo].[Ref_Event_Type](
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[Ref_Event_Type] ADD CONSTRAINT active_ind_def   DEFAULT 1 FOR active_ind ;  
+GO  
+
+
 

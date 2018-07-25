@@ -31,7 +31,6 @@ GO
 ALTER TABLE [dbo].[Event] ADD  CONSTRAINT [DF_Event_Date_Created]  DEFAULT (getdate()) FOR [Date_Created]
 GO
 
-ALTER TABLE [dbo].[Event] ADD  CONSTRAINT [DF_Event_Date_Ended]  DEFAULT (getdate()) FOR [Date_Ended]
-GO
 
-
+ALTER TABLE [dbo].[Event] ADD CONSTRAINT active_ind_def   DEFAULT 1 FOR active_ind ;  
+GO  
