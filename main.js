@@ -30,10 +30,10 @@ app.run(function($rootScope){
     
 function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
     
-    this.pool = [
-        'Gold',
-        'Silver',
-        'New'
+    this.status = [
+        'IN',
+        'OUT',
+        'SAFE'
       ];
     
     this.more = {
@@ -58,15 +58,13 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
 
     var apiurl = "https://35ywp9uz0b.execute-api.us-east-1.amazonaws.com/vbcoach_prod/retrieveplayers";
     
-    playerList.names = [
-      {PlayerId:'1', text:'Harry Potter', checkin:true, group:"Gold", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'2', text:'Mary Lane', checkin:true, group:"Gold", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'3', text:'Mickie Orlando', checkin:true, group:"Gold", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'4', text:'John Doe', checkin:true, group:"Gold", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'5', text:'Mary Walse', checkin:true, group:"Silver", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'6', text:'Karika Kashe', checkin:true, group:"Silver", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'7', text:'Kari Cyburi', checkin:true, group:"Silver", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0},
-      {PlayerId:'8', text:'LB Roy', checkin:true, group:"Silver", team:0, net:0, gameWon:0, gameLost:0, gamePlayed:0, totalPoints:0}
+    playerList.employees = [
+      {fname:'Bruce', lname:'Wayne', email:'GSAC.BW@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
+      {fname:'Clark', lname:'Kent', email:'GSAC.CK@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
+      {fname:'Bruce', lname:'Banner', email:'GSAC.BB@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
+      {fname:'Donna', lname:'Troy', email:'GSAC.DT@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'},
+      {fname:'Selina', lname:'Kyle', email:'GSAC.SK@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'OUT'},
+      {fname:'Barbara', lname:'Gordon', email:'GSAC.BG@gmail.com', building:'SA20',floor:'17',room:'127',phone:'571-435-4966',status:'IN'}
     ];
     
     
