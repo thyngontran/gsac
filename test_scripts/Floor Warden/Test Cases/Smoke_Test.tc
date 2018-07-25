@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Smoke testing the floor warden app</description>
+   <name>Smoke_Test</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>5216e9a1-7c6c-4171-ab7b-7b7d41e30cf4</testCaseGuid>
+</TestCaseEntity>
