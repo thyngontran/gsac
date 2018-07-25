@@ -142,22 +142,6 @@ p.status {
   color: red;
 }
 
-<style>
-table, th, td {
-    height="150%"
-    border: 1px solid grey;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-table tr:nth-child(odd){
-    background-color: azure;
-}
-
-table tr:nth-child(even){
-    background-color: aqua;
-}
-
 md-toolbar.md-default-theme:not(.md-menu-toolbar).md-accent, md-toolbar:not(.md-menu-toolbar).md-accent {
     background-color: rgb(125, 42, 72);
     color: rgb(255,255,255);
