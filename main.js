@@ -16,8 +16,8 @@ app.config(function($routeProvider) {
     .when("/checkin", {
         templateUrl : "checkin.htm"
     })
-    .when("/play", {
-        templateUrl : "random.htm"
+    .when("/employee", {
+        templateUrl : "employee.htm"
     })
     .when("/result", {
         templateUrl : "result.htm"
@@ -25,7 +25,7 @@ app.config(function($routeProvider) {
 });    
     
 app.run(function($rootScope){
-    $rootScope.title = "Team Ruby";
+    $rootScope.title = "Floor Warden";
 });
     
 function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
