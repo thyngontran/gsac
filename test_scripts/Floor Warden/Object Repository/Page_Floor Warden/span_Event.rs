@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_Event</name>
+   <tag></tag>
+   <elementGuidId>d4af1319-9e9c-420b-bd9f-dea7b31155f4</elementGuidId>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>_md-nav-button-text ng-scope</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>
+        Event
+      </value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;popupContainer&quot;)/md-nav-bar[@class=&quot;ng-isolate-scope&quot;]/div[@class=&quot;md-nav-bar&quot;]/nav[1]/ul[@class=&quot;_md-nav-bar-list&quot;]/li[@class=&quot;md-nav-item ng-scope ng-isolate-scope&quot;]/a[@class=&quot;_md-nav-button md-accent md-button md-ink-ripple md-unselected&quot;]/span[@class=&quot;_md-nav-button-text ng-scope&quot;]</value>
+   </webElementProperties>
+</WebElementEntity>
