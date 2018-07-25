@@ -374,7 +374,7 @@ function TourneyListController($scope, $rootScope, $http, $location, $mdPanel) {
             playerList.retrieveAllPlayers(playerList.userName);
         }
 		
-		$('table.dataTable').DataTable();
+		//$('table.dataTable').DataTable();
     }
     //TODO
     playerList.initChecking = function() {
