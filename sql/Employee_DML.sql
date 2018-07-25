@@ -38,7 +38,7 @@ INSERT INTO [dbo].[Employee]
            ,[Phone]
            ,[Warden_Ind]
            ,[Active_Ind])
-     VALUES        ('Bruce', 'Banner','GSAC.BB@gmail.com', 'SA20',17,'126','571-435-4964',1,1)
+     VALUES        ('Bruce', 'Banner','GSAC.BB1@gmail.com', 'SA20',17,'126','571-435-4964',1,1)
 INSERT INTO [dbo].[Employee]
            ([Fname]
            ,[Lname]
@@ -60,7 +60,7 @@ INSERT INTO [dbo].[Employee]
            ,[Phone]
            ,[Warden_Ind]
            ,[Active_Ind])
-     VALUES          ('Selina', 'Kyle','GSAC.SK@gmail.com', 'SA20',17,'124','571-435-4962',1,1)
+     VALUES          ('Selina', 'Kyle','GSAC.SK1@gmail.com', 'SA20',17,'124','571-435-4962',1,1)
   INSERT INTO [dbo].[Employee]
            ([Fname]
            ,[Lname]
